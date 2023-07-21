@@ -28,6 +28,7 @@ import edu.ucsb.cs156.example.entities.User;
 import edu.ucsb.cs156.example.repositories.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity(prePostEnabled = true)
@@ -39,10 +40,21 @@ public class SecurityConfig {
   @Value("${app.admin.emails}")
   private final List<String> adminEmails = new ArrayList<String>();
 
+  // public static final String[] ENDPOINTS_WHITELIST = {
+  //     "/",
+  //     "/error",
+  //     "/oauth2/authorization/google",
+  //     "/swagger-ui/**",
+  //     "/h2-console/**"
+  // };
+
+
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(authorize -> authorize
         .anyRequest().permitAll())
+        // .requestMatchers(ENDPOINTS_WHITELIST).permitAll()
+        // .anyRequest().authenticated())
         .exceptionHandling(handlingConfigurer -> handlingConfigurer
             .authenticationEntryPoint(new Http403ForbiddenEntryPoint()))
         .oauth2Login(
@@ -54,13 +66,19 @@ public class SecurityConfig {
             .logoutSuccessUrl("/"));
 
     return http.build();
+
   }
 
   private GrantedAuthoritiesMapper userAuthoritiesMapper() {
+    log.info("userAuthoritiesMapper called");
     return (authorities) -> {
+      log.info("userAuthoritiesMapper called on authorities={}", authorities);
+
       Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
 
       authorities.forEach(authority -> {
+        log.info("userAuthoritiesMapper called on authority={}", authority);
+
         mappedAuthorities.add(authority);
         if (OAuth2UserAuthority.class.isInstance(authority)) {
           OAuth2UserAuthority oauth2UserAuthority = (OAuth2UserAuthority) authority;
@@ -78,6 +96,7 @@ public class SecurityConfig {
         }
 
       });
+      log.info("mappedAuthorities={}", mappedAuthorities);
       return mappedAuthorities;
     };
   }
