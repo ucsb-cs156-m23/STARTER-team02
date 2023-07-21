@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-m23/STARTER-team02
 owner: ucsb-cs156-m23
 repo_name: STARTER-team02
-pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"springBoot2","number":2,"title":"pc - working version for Spring Boot 2 with new SpringDocs in place","url":"https://github.com/ucsb-cs156-m23/STARTER-team02/pull/2"},{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"SpringBoot3","number":1,"title":"pc - updates for Spring Boot 3","url":"https://github.com/ucsb-cs156-m23/STARTER-team02/pull/1"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"SpringBoot3","number":1,"title":"pc - updates for Spring Boot 3","url":"https://github.com/ucsb-cs156-m23/STARTER-team02/pull/1"}]
