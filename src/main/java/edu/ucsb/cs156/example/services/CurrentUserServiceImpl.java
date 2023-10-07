@@ -95,6 +95,7 @@ public class CurrentUserServiceImpl extends CurrentUserService {
   }
 
   public Collection<? extends GrantedAuthority> getRoles() {
-   return grantedAuthoritiesService.getGrantedAuthorities();
+   grantedAuthoritiesService.getGrantedAuthorities();
+   return new ArrayList<GrantedAuthority>();
   }
 }
